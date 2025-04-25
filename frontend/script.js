@@ -20,3 +20,24 @@ document.getElementById("screenshotBtn").addEventListener("click", function() {
     alert("Failed to capture screenshot. Please try again.");
   });
 });
+
+
+const btn = document.getElementById('screenshotBtn');
+    const toast = document.getElementById('toast');
+
+    btn.addEventListener('click', () => {
+      html2canvas(document.body).then(canvas => {
+        const link = document.createElement('a');
+        link.download = 'screenshot.png';
+        link.href = canvas.toDataURL();
+        link.click();
+        showToast();
+      });
+    });
+
+    function showToast() {
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
