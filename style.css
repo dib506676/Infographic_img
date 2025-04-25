@@ -1,0 +1,239 @@
+/* Base Styles */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #f8fafc;
+  margin: 0;
+  padding: 2rem;
+  line-height: 1.6;
+  color: #334155;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.main-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 3rem;
+  position: relative;
+  padding-bottom: 1rem;
+  letter-spacing: -0.5px;
+}
+
+.main-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 4px;
+  background: linear-gradient(to right, #6366f1, #a855f7, #ec4899);
+  border-radius: 2px;
+}
+
+.timeline {
+  position: relative;
+  padding: 2rem 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: linear-gradient(to bottom, 
+    rgba(99, 102, 241, 0.15), 
+    rgba(168, 85, 247, 0.4), 
+    rgba(236, 72, 153, 0.15));
+  transform: translateX(-50%);
+}
+
+.step {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+  position: relative;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.step:hover {
+  transform: translateY(-3px);
+}
+
+.step.left {
+  flex-direction: row;
+}
+
+.step.right {
+  flex-direction: row-reverse;
+}
+
+.number-box {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 800;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+  z-index: 1;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.step:hover .number-box {
+  transform: scale(1.05);
+  box-shadow: 0 6px 30px rgba(99, 102, 241, 0.4);
+}
+
+.text-box {
+  background-color: white;
+  padding: 1.75rem;
+  border-radius: 16px;
+  width: calc(90% - 100px);
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+  border-left: 4px solid #6366f1;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.step.right .text-box {
+  border-left: none;
+  border-right: 4px solid #8b5cf6;
+}
+
+.step:hover .text-box {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.text-box h2 {
+  color: #1e293b;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+}
+
+.text-box p {
+  color: #475569;
+  font-size: 1rem;
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* Responsive Timeline */
+@media screen and (max-width: 768px) {
+  .timeline::before {
+    left: 35px;
+    transform: none;
+  }
+
+  .step {
+    flex-direction: column;
+    margin-bottom: 2.5rem;
+  }
+
+  .step.left, .step.right {
+    flex-direction: column;
+  }
+
+  .number-box {
+    margin-bottom: 1.5rem;
+    align-self: flex-start;
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+
+  .text-box {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .step.right .text-box {
+    border-right: none;
+    border-left: 4px solid #8b5cf6;
+  }
+}
+
+/* Creative Floating Screenshot Button */
+#screenshotBtn {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.9rem 1.4rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 40px;
+  background: rgba(99, 102, 241, 0.75);
+  color: white;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.35);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+#screenshotBtn i {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+#screenshotBtn:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  box-shadow: 0 12px 30px rgba(99, 102, 241, 0.4);
+}
+
+#screenshotBtn:hover i {
+  transform: rotate(-10deg) scale(1.2);
+}
+
+#screenshotBtn:active {
+  transform: scale(0.97);
+}
+
+/* Glowing Ring Animation */
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(99, 102, 241, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+  }
+}
+
+#screenshotBtn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 40px;
+  z-index: -1;
+  animation: pulseGlow 2.5s infinite ease-in-out;
+}
